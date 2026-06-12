@@ -1,0 +1,11 @@
+.pytest-cache-local/
+.pytest-tmp/
+__pycache__/
+*.pyc
+*.egg-info/
+.venv/
+dist/
+build/
+/candidates.json
+/recommendations.md
+.env

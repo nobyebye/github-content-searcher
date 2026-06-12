@@ -1,0 +1,36 @@
+{
+  "query": "python ai agent language:Python stars:>100",
+  "total_count": 3,
+  "candidates": [
+    {
+      "full_name": "demo/agent",
+      "html_url": "https://github.com/demo/agent",
+      "description": "A sample Python AI agent framework entry for documentation demos.",
+      "language": "Python",
+      "stars": 1000,
+      "forks": 100,
+      "open_issues": 5,
+      "updated_at": "2026-05-01T00:00:00Z",
+      "pushed_at": "2026-05-01T00:00:00Z",
+      "topics": ["ai-agent", "llm"],
+      "license": "MIT License",
+      "archived": false,
+      "score": 50
+    },
+    {
+      "full_name": "demo/rag",
+      "html_url": "https://github.com/demo/rag",
+      "description": "A sample RAG framework entry for documentation demos.",
+      "language": "Python",
+      "stars": 600,
+      "forks": 60,
+      "open_issues": 12,
+      "updated_at": "2026-04-01T00:00:00Z",
+      "pushed_at": "2026-04-01T00:00:00Z",
+      "topics": ["rag", "retrieval-augmented-generation"],
+      "license": "Apache License 2.0",
+      "archived": false,
+      "score": 42
+    }
+  ]
+}

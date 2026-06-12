@@ -1,0 +1,47 @@
+[build-system]
+requires = ["setuptools>=69"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "github-content-searcher"
+version = "0.1.0"
+description = "Find, score, and recommend AI engineering projects on GitHub."
+readme = "README.md"
+requires-python = ">=3.12"
+license = { text = "MIT" }
+authors = [
+  { name = "nobyebye" }
+]
+keywords = [
+  "github",
+  "ai-agent",
+  "rag",
+  "mcp",
+  "codex",
+  "claude-code",
+  "llm"
+]
+classifiers = [
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.12",
+  "License :: OSI Approved :: MIT License",
+  "Environment :: Console",
+  "Topic :: Software Development",
+]
+
+[project.scripts]
+github-content-searcher = "github_content_searcher.cli:main"
+
+[project.optional-dependencies]
+dev = [
+  "pytest>=8",
+]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]
+addopts = ["--basetemp=.pytest-tmp"]
+cache_dir = ".pytest-cache-local"

@@ -1,0 +1,4 @@
+interface:
+  display_name: "GitHub Content Searcher"
+  short_description: "Find and rank AI engineering projects on GitHub"
+  default_prompt: "Use github-content-searcher to find GitHub projects that fit my engineering needs."
