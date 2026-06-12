@@ -157,6 +157,8 @@ Validate the bundled Skill:
 quick_validate.py .\skills\github-content-searcher
 ```
 
+Publishing notes are in [docs/PUBLISHING.md](docs/PUBLISHING.md).
+
 ## Roadmap
 
 - Curated AI engineering repository lists
