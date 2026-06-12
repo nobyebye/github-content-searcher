@@ -1,5 +1,9 @@
 # GitHub Content Searcher
 
+[![Tests](https://github.com/nobyebye/github-content-searcher/actions/workflows/test.yml/badge.svg)](https://github.com/nobyebye/github-content-searcher/actions/workflows/test.yml)
+[![Python 3.12+](https://img.shields.io/badge/python-3.12%2B-blue)](https://www.python.org/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
+
 Find the right AI engineering project before you waste a weekend on the wrong GitHub repository.
 
 `github-content-searcher` is a CLI and Codex Skill for discovering, scoring, and recommending GitHub projects in AI engineering areas such as AI Agents, RAG, MCP, Codex Skills, Claude Skills, browser automation, and LLM app frameworks.
@@ -25,9 +29,16 @@ This tool combines:
 Install from source:
 
 ```powershell
-git clone https://github.com/your-name/github-content-searcher.git
+git clone https://github.com/nobyebye/github-content-searcher.git
 cd github-content-searcher
 python -m pip install -e ".[dev]"
+```
+
+Check your local setup:
+
+```powershell
+github-content-searcher doctor
+github-content-searcher --version
 ```
 
 Search for candidates:
@@ -46,6 +57,13 @@ You can also run it as a module:
 
 ```powershell
 python -m github_content_searcher search "rag framework" --language Python --limit 5
+```
+
+If you are in a restricted or offline environment, install `setuptools` in your virtual environment first or run the project with `PYTHONPATH=src` for local development:
+
+```powershell
+$env:PYTHONPATH="src"
+python -m github_content_searcher rank examples\candidates.json --requirement "learning AI Agent"
 ```
 
 ## Example Output
@@ -126,6 +144,13 @@ Run tests:
 python -m pytest
 ```
 
+Run the CLI locally:
+
+```powershell
+github-content-searcher doctor
+github-content-searcher rank examples\candidates.json --requirement "I want Python projects for learning AI Agents"
+```
+
 Validate the bundled Skill:
 
 ```powershell
@@ -139,6 +164,21 @@ quick_validate.py .\skills\github-content-searcher
 - Better local LLM structured output
 - Markdown comparison tables
 - Optional Web UI after the CLI and Skill are stable
+
+See [CHANGELOG.md](CHANGELOG.md) for release history.
+
+## For Chinese Learners
+
+这个项目也适合用来学习标准 Python 工程结构：
+
+- `src/` package 布局
+- CLI 参数设计
+- GitHub API 请求
+- JSON / Markdown 输出
+- 本地 LLM 降级策略
+- pytest 单元测试
+- GitHub Actions CI
+- Codex Skill 打包方式
 
 ## License
 

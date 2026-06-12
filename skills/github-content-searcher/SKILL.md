@@ -14,6 +14,7 @@ Prefer the packaged CLI when it is installed:
 ```powershell
 github-content-searcher search "python ai agent" --language Python --min-stars 100 --limit 5 --output candidates.json
 github-content-searcher rank candidates.json --requirement "I want Python projects for learning AI Agents" --top 5
+github-content-searcher doctor
 ```
 
 If the package is not installed, use the repository module form from the project root:
@@ -70,3 +71,10 @@ Return a concise Top 5 by default:
 ## Boundaries
 
 Do not use this skill for PR review, GitHub Actions debugging, branch publishing, or pull request creation. Use dedicated GitHub workflow skills for those tasks.
+
+## Failure Handling
+
+- If GitHub returns 403 or rate limit errors, ask the user to configure `GITHUB_TOKEN`.
+- If no repositories match, suggest relaxing stars, language, or date filters.
+- If the local LLM is unavailable, continue with deterministic scoring.
+- If output feels too broad, ask whether the user wants learning, production adoption, or comparison research.

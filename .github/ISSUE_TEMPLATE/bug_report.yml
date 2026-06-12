@@ -1,0 +1,35 @@
+name: Bug report
+description: Report a problem with GitHub Content Searcher.
+title: "[Bug]: "
+labels: ["bug"]
+body:
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What happened?
+      description: Describe the problem and what you expected instead.
+    validations:
+      required: true
+  - type: textarea
+    id: command
+    attributes:
+      label: Command
+      description: Paste the command you ran.
+      render: powershell
+    validations:
+      required: false
+  - type: textarea
+    id: output
+    attributes:
+      label: Output
+      description: Paste the error or unexpected output. Remove secrets first.
+      render: text
+    validations:
+      required: false
+  - type: input
+    id: version
+    attributes:
+      label: Version
+      description: Run `github-content-searcher --version`.
+    validations:
+      required: false

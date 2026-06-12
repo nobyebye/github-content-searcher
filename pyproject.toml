@@ -29,6 +29,11 @@ classifiers = [
   "Topic :: Software Development",
 ]
 
+[project.urls]
+Homepage = "https://github.com/nobyebye/github-content-searcher"
+Repository = "https://github.com/nobyebye/github-content-searcher"
+Issues = "https://github.com/nobyebye/github-content-searcher/issues"
+
 [project.scripts]
 github-content-searcher = "github_content_searcher.cli:main"
 

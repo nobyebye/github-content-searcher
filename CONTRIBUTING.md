@@ -25,6 +25,7 @@ This project is intentionally focused: help engineers discover and evaluate GitH
 ```powershell
 python -m pip install -e ".[dev]"
 python -m pytest
+github-content-searcher doctor
 ```
 
 ## Pull Request Checklist
@@ -33,6 +34,7 @@ python -m pytest
 - New behavior has tests.
 - README examples still match the CLI.
 - Skill changes pass `quick_validate.py skills/github-content-searcher`.
+- CLI examples in `docs/DEMO.md` still work.
 - No secrets, tokens, or private repository data are committed.
 
 ## Scoring Changes
