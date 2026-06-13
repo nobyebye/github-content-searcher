@@ -174,6 +174,7 @@ quick_validate.py .\skills\github-content-searcher
 ```
 
 Publishing notes are in [docs/PUBLISHING.md](docs/PUBLISHING.md).
+Versioning notes are in [docs/VERSIONING.md](docs/VERSIONING.md).
 
 ## Roadmap
 
