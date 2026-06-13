@@ -6,7 +6,7 @@
 
 Find the right AI engineering project before you waste a weekend on the wrong GitHub repository.
 
-`github-content-searcher` is a CLI and Codex Skill for discovering, scoring, and recommending GitHub projects in AI engineering areas such as AI Agents, RAG, MCP, Codex Skills, Claude Skills, browser automation, and LLM app frameworks.
+`github-content-searcher` is a CLI, Codex Skill, and Claude Code plugin for discovering, scoring, and recommending GitHub projects in AI engineering areas such as AI Agents, RAG, MCP, Codex Skills, Claude Skills, browser automation, and LLM app frameworks.
 
 It is not a generic GitHub search clone. It helps answer the decision question:
 
@@ -28,7 +28,7 @@ This tool combines:
 - deterministic scoring
 - optional local OpenAI-compatible LLM ranking
 - Markdown and JSON output
-- a bundled Codex Skill for agent workflows
+- bundled Codex Skill and Claude Code plugin packages for agent workflows
 
 ## Quick Start
 
@@ -153,6 +153,28 @@ Then ask Codex things like:
 Use github-content-searcher to find active Python AI Agent projects for learning.
 ```
 
+## Claude Code Plugin
+
+This repository also includes a Claude Code plugin:
+
+```text
+claude-code/github-content-searcher/
+```
+
+Test it locally from the repository root:
+
+```powershell
+claude --plugin-dir .\claude-code\github-content-searcher
+```
+
+Then invoke the namespaced skill:
+
+```text
+/github-content-searcher:search 找一些关于爬虫的项目
+```
+
+Standalone install and validation notes are in [docs/CLAUDE_CODE.md](docs/CLAUDE_CODE.md).
+
 ## What It Does Not Do
 
 - It does not fix PR review comments.
@@ -207,6 +229,7 @@ See [CHANGELOG.md](CHANGELOG.md) for release history.
 - pytest 单元测试
 - GitHub Actions CI
 - Codex Skill 打包方式
+- Claude Code Plugin 打包方式
 
 ## License
 

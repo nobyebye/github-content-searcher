@@ -1,0 +1,11 @@
+{
+  "name": "github-content-searcher",
+  "description": "Claude Code plugin for discovering, scoring, and summarizing GitHub repositories for AI engineering needs.",
+  "version": "0.2.0",
+  "author": {
+    "name": "nobyebye"
+  },
+  "homepage": "https://github.com/nobyebye/github-content-searcher",
+  "repository": "https://github.com/nobyebye/github-content-searcher",
+  "license": "MIT"
+}

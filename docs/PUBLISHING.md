@@ -50,9 +50,15 @@ Validate the bundled Skill:
 quick_validate.py .\skills\github-content-searcher
 ```
 
+Validate the Claude Code plugin if your Claude Code version supports it:
+
+```powershell
+claude plugin validate .\claude-code\github-content-searcher
+```
+
 Tag the release after the checklist passes:
 
 ```powershell
-git tag -a v0.1.0 -m "Release v0.1.0"
-git push origin v0.1.0
+git tag -a v0.2.0 -m "Release v0.2.0"
+git push origin v0.2.0
 ```
