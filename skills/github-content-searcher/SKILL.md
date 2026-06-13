@@ -66,6 +66,7 @@ Return a concise Top 5 by default:
 - repository name and link
 - stars, language, last updated date
 - why it matches the user's need
+- three user-language summary fields: what it is, what problem it solves, and the main conclusion
 - risks or caveats
 - best-fit use case
 - next step for the user

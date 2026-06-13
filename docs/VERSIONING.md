@@ -9,7 +9,7 @@ MAJOR.MINOR.PATCH
 ## Current Release
 
 ```text
-0.1.0
+0.1.1
 ```
 
 ## Version Sources
@@ -37,12 +37,12 @@ quick_validate.py .\skills\github-content-searcher
 Create the release tag:
 
 ```powershell
-git tag -a v0.1.0 -m "Release v0.1.0"
+git tag -a v0.1.1 -m "Release v0.1.1"
 ```
 
 Push code and tags:
 
 ```powershell
 git push -u origin main
-git push origin v0.1.0
+git push origin v0.1.1
 ```

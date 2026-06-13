@@ -12,6 +12,12 @@ It is not a generic GitHub search clone. It helps answer the decision question:
 
 > Which project should I actually study, install, or build on?
 
+Each recommended project includes a short user-language summary:
+
+- 主要是什么东西
+- 解决了什么问题
+- 主要的结论
+
 ## Why This Exists
 
 GitHub stars are useful, but they are not enough. A good engineering choice also depends on relevance, recent activity, language fit, license clarity, risk signals, and whether the project matches your learning or production goal.
@@ -83,6 +89,9 @@ python -m github_content_searcher rank examples\candidates.json --requirement "l
 - Language: Python
 - Updated: 2026-05-01T00:00:00Z
 - Score: 50
+- 主要是什么东西：这是一个面向网页抓取和爬虫的 Python 项目。
+- 解决了什么问题：它主要解决网页抓取和爬虫场景下的学习参考、方案选型和二次开发起点问题。
+- 主要的结论：综合评分 50，Stars 1000，许可证 MIT License；建议继续查看 README、examples 和 issues。
 - 适合场景：围绕 `learning AI Agent` 进一步阅读 README、examples 和 issues。
 - 风险 / Risk: license=MIT License, open_issues=5.
 - 下一步：打开仓库文档，确认安装方式、维护活跃度和最小可运行示例。

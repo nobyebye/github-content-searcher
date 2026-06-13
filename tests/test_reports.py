@@ -30,3 +30,76 @@ def test_render_recommendations_markdown_has_project_decision_fields():
     assert "推荐等级" in markdown
     assert "适合场景" in markdown
     assert "下一步" in markdown
+
+
+def test_render_recommendations_markdown_summarizes_each_project_in_user_language():
+    markdown = render_recommendations_markdown(
+        [
+            {
+                "full_name": "demo/crawler",
+                "html_url": "https://github.com/demo/crawler",
+                "description": "A Python web crawler framework for scraping websites.",
+                "stars": 1000,
+                "language": "Python",
+                "updated_at": "2026-05-01T00:00:00Z",
+                "score": 60,
+                "license": "MIT License",
+                "open_issues": 5,
+            }
+        ],
+        requirement="找一些关于爬虫的项目",
+        top=1,
+    )
+
+    assert "主要是什么东西" in markdown
+    assert "解决了什么问题" in markdown
+    assert "主要的结论" in markdown
+    assert "爬虫" in markdown
+
+
+def test_chinese_project_summary_translates_common_crawler_terms():
+    markdown = render_recommendations_markdown(
+        [
+            {
+                "full_name": "demo/crawler",
+                "html_url": "https://github.com/demo/crawler",
+                "description": "A web scraping and browser automation library for Python crawlers.",
+                "stars": 1000,
+                "language": "Python",
+                "updated_at": "2026-05-01T00:00:00Z",
+                "score": 60,
+                "license": "MIT License",
+                "open_issues": 5,
+            }
+        ],
+        requirement="找一些关于爬虫的项目",
+        top=1,
+    )
+
+    assert "网页抓取" in markdown
+    assert "浏览器自动化" in markdown
+
+
+def test_project_summary_prioritizes_user_requirement_domain():
+    markdown = render_recommendations_markdown(
+        [
+            {
+                "full_name": "demo/crawler",
+                "html_url": "https://github.com/demo/crawler",
+                "description": "A web scraping library that also mentions RAG, MCP, and browser automation.",
+                "stars": 1000,
+                "language": "Python",
+                "updated_at": "2026-05-01T00:00:00Z",
+                "score": 60,
+                "license": "MIT License",
+                "open_issues": 5,
+            }
+        ],
+        requirement="找一些关于爬虫的项目",
+        top=1,
+    )
+
+    assert "面向网页抓取和爬虫的 Python 项目" in markdown
+    assert "面向网页抓取和爬虫、" not in markdown
+    assert "RAG 和知识检索" not in markdown
+    assert "MCP 工具和上下文协议" not in markdown

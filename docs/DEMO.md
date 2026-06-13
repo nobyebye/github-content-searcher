@@ -22,6 +22,14 @@ github-content-searcher rank candidates.json --requirement "I want Python projec
 
 If a local LLM is configured, it can explain the ranking. If not, deterministic scoring is used.
 
+Each recommendation includes:
+
+```text
+主要是什么东西
+解决了什么问题
+主要的结论
+```
+
 ## Diagnose
 
 ```powershell

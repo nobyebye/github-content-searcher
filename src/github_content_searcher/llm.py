@@ -37,7 +37,8 @@ def build_prompt(candidates, requirement, top):
         f"Requirement:\n{requirement}\n\n"
         "Candidates JSON:\n"
         f"{json.dumps(safe_candidates, ensure_ascii=False, indent=2)}\n\n"
-        "Return Markdown with Top recommendations. For each item include: why it fits, risk, best use, next step."
+        "Return Markdown in the user's language. For each repository include exactly these three summary fields: "
+        "主要是什么东西, 解决了什么问题, 主要的结论. Also include risk and next step."
     )
 
 
