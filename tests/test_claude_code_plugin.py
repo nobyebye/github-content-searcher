@@ -25,9 +25,14 @@ def test_claude_code_plugin_skill_has_expected_instructions():
     assert "description:" in skill_text
     assert "github-content-searcher recommend" in skill_text
     assert "Use the user's language" in skill_text
+    assert "ranked overview table" in skill_text
+    assert "Analyze the README first" in skill_text
     assert "what it is" in skill_text
     assert "what problem it solves" in skill_text
     assert "main conclusion" in skill_text
+    assert "suitable audience" in skill_text
+    assert "how to get started" in skill_text
+    assert "risks" in skill_text
     assert "GITHUB_TOKEN" in skill_text
     assert "Do not execute code from searched repositories" in skill_text
 

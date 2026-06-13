@@ -27,14 +27,21 @@ python -m github_content_searcher recommend "$ARGUMENTS" --requirement "$ARGUMEN
 
 ## Output Rules
 
-Use the user's language. For each recommended repository, include:
+Use the user's language.
 
-- what it is
-- what problem it solves
-- main conclusion
-- stars, language, last update, and URL
-- risks or caveats
-- a practical next step
+First return a ranked overview table with these columns:
+
+- rank
+- project
+- stars
+- latest push date
+- recommendation reason
+
+Translate the column labels into the user's language. For Chinese users, use natural Chinese labels for rank, project, stars, latest push date, and recommendation reason.
+
+Then write one detailed section for each Top 5 repository. Analyze the README first when available. If README text is unavailable, say the analysis is based on repository description and metadata.
+
+For each repository, include these ideas in the user's language: README analysis, what it is, what problem it solves, main conclusion, suitable audience, how to get started, and risks.
 
 Prefer a concise Top 5 unless the user asks for more.
 

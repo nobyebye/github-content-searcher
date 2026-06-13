@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.2.1 - 2026-06-13
+
+- Standardize recommendation output as overview table first, then Top 5 detailed analysis.
+- Add README-oriented Chinese project analysis fields: `README 分析`, `适合谁`, `怎么上手`, and `风险是什么`.
+- Update local LLM prompt and bundled Skills to keep response formatting consistent.
+
 ## 0.2.0 - 2026-06-13
 
 - Add Claude Code plugin compatibility under `claude-code/github-content-searcher`.

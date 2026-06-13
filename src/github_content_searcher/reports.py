@@ -113,6 +113,54 @@ def project_summary_points(repo, requirement):
     return what_it_is, problem_solved, conclusion
 
 
+def short_date(value):
+    if not value:
+        return "Unknown"
+
+    return value[:10]
+
+
+def recommendation_reason(repo, requirement):
+    domain_summary = infer_domain_summary(repo, requirement)
+    language = repo.get("language", "Unknown")
+    score = repo.get("score", 0)
+    stars = repo.get("stars", 0)
+
+    return f"{language} 项目，匹配{domain_summary}，评分 {score}，Stars {stars}"
+
+
+def readme_analysis(repo, requirement):
+    description = repo.get("description") or "仓库描述为空，需要打开 README 判断项目定位。"
+    domain_summary = infer_domain_summary(repo, requirement)
+
+    return (
+        f"README 应优先确认它是否真的围绕“{requirement}”提供安装、示例和核心能力说明。"
+        f"从仓库描述看，它当前更像是{domain_summary}方向的项目：{description}"
+    )
+
+
+def suitable_users(repo, requirement):
+    language = repo.get("language", "Unknown")
+    domain_summary = infer_domain_summary(repo, requirement)
+
+    return f"适合想用 {language} 学习、对比或二次开发{domain_summary}项目的人，尤其适合围绕“{requirement}”做选型。"
+
+
+def getting_started(repo):
+    return (
+        "先看 README 的安装命令和 Quick Start，再找 examples、docs 或 demo；"
+        "如果 10 分钟内找不到最小可运行示例，就把它降一级评估。"
+    )
+
+
+def risk_summary(repo):
+    license_name = repo.get("license", "Unknown")
+    open_issues = repo.get("open_issues", "Unknown")
+    updated_at = short_date(repo.get("updated_at"))
+
+    return f"许可证：{license_name}；开放 issue：{open_issues}；最近推送：{updated_at}。还要检查 README 是否过时、示例是否能跑通。"
+
+
 def render_recommendations_markdown(candidates, requirement, top=5):
     sorted_candidates = sorted(
         candidates,
@@ -136,12 +184,35 @@ def render_recommendations_markdown(candidates, requirement, top=5):
         )
         return "\n".join(lines)
 
+    lines.extend(
+        [
+            "## Top 项目总览",
+            "",
+            "| 排名 | 项目 | Stars | 最近推送 | 推荐理由 |",
+            "|---:|---|---:|---|---|",
+        ]
+    )
+
+    for index, repo in enumerate(sorted_candidates, start=1):
+        lines.append(
+            "| {index} | [{name}]({url}) | {stars} | {updated} | {reason} |".format(
+                index=index,
+                name=repo["full_name"],
+                url=repo["html_url"],
+                stars=repo.get("stars", 0),
+                updated=short_date(repo.get("updated_at")),
+                reason=recommendation_reason(repo, requirement),
+            )
+        )
+
+    lines.extend(["", "## Top 5 深度分析", ""])
+
     for index, repo in enumerate(sorted_candidates, start=1):
         score = repo.get("score", 0)
         what_it_is, problem_solved, conclusion = project_summary_points(repo, requirement)
         lines.extend(
             [
-                f"## {index}. {repo['full_name']}",
+                f"## Top {index}: {repo['full_name']}",
                 "",
                 f"- URL: {repo['html_url']}",
                 f"- 推荐等级：{recommendation_level(score)}",
@@ -149,12 +220,13 @@ def render_recommendations_markdown(candidates, requirement, top=5):
                 f"- Language: {repo.get('language', 'Unknown')}",
                 f"- Updated: {repo.get('updated_at') or 'Unknown'}",
                 f"- Score: {score}",
+                f"- README 分析：{readme_analysis(repo, requirement)}",
                 f"- 主要是什么东西：{what_it_is}",
                 f"- 解决了什么问题：{problem_solved}",
                 f"- 主要的结论：{conclusion}",
-                f"- 适合场景：围绕 `{requirement}` 进一步阅读 README、examples 和 issues。",
-                f"- 风险 / Risk: license={repo.get('license', 'Unknown')}, open_issues={repo.get('open_issues', 'Unknown')}.",
-                "- 下一步：打开仓库文档，确认安装方式、维护活跃度和最小可运行示例。",
+                f"- 适合谁：{suitable_users(repo, requirement)}",
+                f"- 怎么上手：{getting_started(repo)}",
+                f"- 风险是什么：{risk_summary(repo)}",
                 "",
             ]
         )

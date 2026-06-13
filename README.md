@@ -81,7 +81,19 @@ python -m github_content_searcher rank examples\candidates.json --requirement "l
 ## Example Output
 
 ```markdown
-## 1. demo/agent
+# GitHub Content Recommendations
+
+需求：找一些关于爬虫的项目
+
+## Top 项目总览
+
+| 排名 | 项目 | Stars | 最近推送 | 推荐理由 |
+|---:|---|---:|---|---|
+| 1 | [demo/agent](https://github.com/demo/agent) | 1000 | 2026-05-01 | Python 项目，匹配网页抓取和爬虫，评分 50，Stars 1000 |
+
+## Top 5 深度分析
+
+## Top 1: demo/agent
 
 - URL: https://github.com/demo/agent
 - 推荐等级：强烈推荐
@@ -89,12 +101,13 @@ python -m github_content_searcher rank examples\candidates.json --requirement "l
 - Language: Python
 - Updated: 2026-05-01T00:00:00Z
 - Score: 50
+- README 分析：README 应优先确认它是否提供安装、示例和核心能力说明。从仓库描述看，它当前更像是网页抓取和爬虫方向的项目。
 - 主要是什么东西：这是一个面向网页抓取和爬虫的 Python 项目。
 - 解决了什么问题：它主要解决网页抓取和爬虫场景下的学习参考、方案选型和二次开发起点问题。
 - 主要的结论：综合评分 50，Stars 1000，许可证 MIT License；建议继续查看 README、examples 和 issues。
-- 适合场景：围绕 `learning AI Agent` 进一步阅读 README、examples 和 issues。
-- 风险 / Risk: license=MIT License, open_issues=5.
-- 下一步：打开仓库文档，确认安装方式、维护活跃度和最小可运行示例。
+- 适合谁：适合想用 Python 学习、对比或二次开发网页抓取和爬虫项目的人。
+- 怎么上手：先看 README 的安装命令和 Quick Start，再找 examples、docs 或 demo。
+- 风险是什么：许可证 MIT License；开放 issue 5；还要检查 README 是否过时、示例是否能跑通。
 ```
 
 ## Recommended Workflow

@@ -1,4 +1,4 @@
-from github_content_searcher.llm import rank_with_optional_llm, rule_based_markdown
+from github_content_searcher.llm import build_prompt, rank_with_optional_llm, rule_based_markdown
 
 
 def sample_candidates():
@@ -21,7 +21,18 @@ def test_rule_based_markdown_includes_reason_and_risk():
 
     assert "# GitHub Content Recommendations" in markdown
     assert "demo/agent" in markdown
-    assert "Risk:" in markdown
+    assert "风险是什么" in markdown
+
+
+def test_llm_prompt_requires_consistent_chinese_output_structure():
+    prompt = build_prompt(sample_candidates(), "找一些关于 GitHub 搜索的 skill", top=1)
+
+    assert "排名 | 项目 | Stars | 最近推送 | 推荐理由" in prompt
+    assert "README" in prompt
+    assert "主要是什么东西" in prompt
+    assert "适合谁" in prompt
+    assert "怎么上手" in prompt
+    assert "风险是什么" in prompt
 
 
 def test_rank_with_optional_llm_falls_back_when_model_is_missing(monkeypatch):

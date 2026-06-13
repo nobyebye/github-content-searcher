@@ -37,8 +37,14 @@ def build_prompt(candidates, requirement, top):
         f"Requirement:\n{requirement}\n\n"
         "Candidates JSON:\n"
         f"{json.dumps(safe_candidates, ensure_ascii=False, indent=2)}\n\n"
-        "Return Markdown in the user's language. For each repository include exactly these three summary fields: "
-        "主要是什么东西, 解决了什么问题, 主要的结论. Also include risk and next step."
+        "Return Markdown in the user's language, with this exact structure:\n"
+        "1. Start with a Top table using these columns: 排名 | 项目 | Stars | 最近推送 | 推荐理由.\n"
+        "2. Then write one detailed section for each Top repository.\n"
+        "3. In each detailed section, analyze the README or README-like candidate text when available. "
+        "If README text is unavailable, say the analysis is based on repository description and metadata.\n"
+        "4. For each repository include these Chinese fields: README 分析, 主要是什么东西, "
+        "解决了什么问题, 主要的结论, 适合谁, 怎么上手, 风险是什么.\n"
+        "5. Keep the result concise and practical for a Chinese-speaking user."
     )
 
 

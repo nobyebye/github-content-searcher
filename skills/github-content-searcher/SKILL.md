@@ -62,14 +62,19 @@ python -m github_content_searcher search "rag framework" --language Python --lim
 
 Return a concise Top 5 by default:
 
-- rank
-- repository name and link
-- stars, language, last updated date
-- why it matches the user's need
-- three user-language summary fields: what it is, what problem it solves, and the main conclusion
-- risks or caveats
-- best-fit use case
-- next step for the user
+1. Start with a ranked overview table.
+   - Columns: rank, project, stars, latest push date, recommendation reason.
+   - Translate the column labels into the user's language. For Chinese users, use natural Chinese labels for rank, project, stars, latest push date, and recommendation reason.
+
+2. Then write one detailed section for each Top 5 repository.
+   - Analyze the README first when available.
+   - If README content is unavailable, state that the analysis is based on repository description and metadata.
+   - Include these ideas in the user's language: README analysis, what it is, what problem it solves, main conclusion, suitable audience, how to get started, and risks.
+
+3. Keep the recommendation practical.
+   - Explain who the project is suitable for.
+   - Explain how to start reading or trying it.
+   - Mention license, maintenance, open issues, documentation quality, and setup risk.
 
 ## Boundaries
 

@@ -59,6 +59,6 @@ claude plugin validate .\claude-code\github-content-searcher
 Tag the release after the checklist passes:
 
 ```powershell
-git tag -a v0.2.0 -m "Release v0.2.0"
-git push origin v0.2.0
+git tag -a v0.2.1 -m "Release v0.2.1"
+git push origin v0.2.1
 ```

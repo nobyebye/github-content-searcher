@@ -28,8 +28,57 @@ def test_render_recommendations_markdown_has_project_decision_fields():
     )
 
     assert "推荐等级" in markdown
-    assert "适合场景" in markdown
-    assert "下一步" in markdown
+    assert "适合谁" in markdown
+    assert "怎么上手" in markdown
+
+
+def test_render_recommendations_markdown_starts_with_ranked_overview_table():
+    markdown = render_recommendations_markdown(
+        [
+            {
+                "full_name": "demo/agent",
+                "html_url": "https://github.com/demo/agent",
+                "description": "A Python LLM agent framework with RAG and MCP support.",
+                "stars": 1000,
+                "language": "Python",
+                "updated_at": "2026-05-01T00:00:00Z",
+                "score": 60,
+                "license": "MIT License",
+                "open_issues": 5,
+            }
+        ],
+        requirement="需要 Python LLM 项目，兼顾 MCP 和 RAG",
+        top=1,
+    )
+
+    assert "| 排名 | 项目 | Stars | 最近推送 | 推荐理由 |" in markdown
+    assert "| 1 | [demo/agent](https://github.com/demo/agent) | 1000 | 2026-05-01 |" in markdown
+    assert markdown.index("| 排名 | 项目 | Stars | 最近推送 | 推荐理由 |") < markdown.index("## Top 1: demo/agent")
+
+
+def test_render_recommendations_markdown_has_readme_oriented_chinese_analysis():
+    markdown = render_recommendations_markdown(
+        [
+            {
+                "full_name": "demo/crawler",
+                "html_url": "https://github.com/demo/crawler",
+                "description": "A Python web crawler framework for scraping websites.",
+                "stars": 1000,
+                "language": "Python",
+                "updated_at": "2026-05-01T00:00:00Z",
+                "score": 60,
+                "license": "MIT License",
+                "open_issues": 5,
+            }
+        ],
+        requirement="找一些关于爬虫的项目",
+        top=1,
+    )
+
+    assert "README 分析" in markdown
+    assert "适合谁" in markdown
+    assert "怎么上手" in markdown
+    assert "风险是什么" in markdown
 
 
 def test_render_recommendations_markdown_summarizes_each_project_in_user_language():
