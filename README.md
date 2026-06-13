@@ -25,9 +25,11 @@ GitHub stars are useful, but they are not enough. A good engineering choice also
 This tool combines:
 
 - GitHub API search
+- README fetching for top recommendations
 - deterministic scoring
 - optional local OpenAI-compatible LLM ranking
 - Markdown and JSON output
+- reusable JSON / Markdown / HTML catalogs
 - bundled Codex Skill and Claude Code plugin packages for agent workflows
 
 ## Quick Start
@@ -63,6 +65,12 @@ Rank candidates for your requirement:
 
 ```powershell
 github-content-searcher rank candidates.json --requirement "I want Python projects for learning AI Agents" --top 5 --output recommendations.md
+```
+
+Build a reusable catalog and static page:
+
+```powershell
+github-content-searcher catalog --limit 5 --output-json data\catalog.json --output-md data\catalog.md --output-html docs\index.html
 ```
 
 You can also run it as a module:
@@ -119,6 +127,36 @@ github-content-searcher recommend "browser automation agent" --requirement "I ne
 ```
 
 Use `search` and `rank` separately when you want to save candidate JSON and inspect it later.
+
+Use `catalog` when you want to build a reusable project directory for AI Agent, RAG, MCP, crawler, and browser automation topics.
+
+## Catalog And Static Page
+
+The catalog command creates three outputs:
+
+```text
+data/catalog.json
+data/catalog.md
+docs/index.html
+```
+
+The default catalog topics are:
+
+- AI Agent
+- RAG
+- MCP
+- 爬虫
+- 浏览器自动化
+
+The generated project cards include README analysis when the README is available. If a README cannot be fetched, the card falls back to repository description and metadata.
+
+The repository also includes a daily GitHub Actions workflow:
+
+```text
+.github/workflows/update-catalog.yml
+```
+
+It builds the catalog and uploads it as a workflow artifact.
 
 ## Local LLM Support
 
@@ -209,6 +247,7 @@ Run the CLI locally:
 ```powershell
 github-content-searcher doctor
 github-content-searcher rank examples\candidates.json --requirement "I want Python projects for learning AI Agents"
+github-content-searcher catalog --limit 2
 ```
 
 Validate the bundled Skill:
@@ -226,7 +265,7 @@ Versioning notes are in [docs/VERSIONING.md](docs/VERSIONING.md).
 - More scoring signals for maintenance and adoption
 - Better local LLM structured output
 - Markdown comparison tables
-- Optional Web UI after the CLI and Skill are stable
+- Optional richer Web UI after the generated static catalog is stable
 
 See [CHANGELOG.md](CHANGELOG.md) for release history.
 

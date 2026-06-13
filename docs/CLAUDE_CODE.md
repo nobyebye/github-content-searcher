@@ -37,6 +37,18 @@ Then invoke:
 
 Claude Code should use the CLI to search, rank, and summarize GitHub repositories in the user's language.
 
+To build a reusable catalog and static page from Claude Code, ask:
+
+```text
+/github-content-searcher:search 生成 AI Agent、RAG、MCP、爬虫和浏览器自动化项目榜单
+```
+
+The skill may run:
+
+```powershell
+github-content-searcher catalog --limit 5 --output-json data/catalog.json --output-md data/catalog.md --output-html docs/index.html
+```
+
 ## Validate The Plugin
 
 If your Claude Code version includes plugin validation, run:
@@ -74,8 +86,10 @@ After installation, open Claude Code and try:
 Claude Code should:
 
 - search GitHub candidates with the local CLI,
+- read README content for top candidates when available,
 - rank by relevance, stars, activity, language, license, and risk,
 - summarize each project in the user's language,
+- create reusable catalog files when asked,
 - include `what it is`, `what problem it solves`, and `main conclusion`,
 - avoid executing untrusted repository code.
 

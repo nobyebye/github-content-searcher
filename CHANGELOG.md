@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.3.0 - 2026-06-13
+
+- Add README fetching for top recommendations so project cards can summarize real repository documentation when available.
+- Add `catalog` command to build reusable AI engineering project catalogs as JSON, Markdown, and HTML.
+- Add static catalog page generation and a daily GitHub Actions workflow that publishes catalog artifacts.
+- Add catalog, README, static site, and workflow tests.
+
 ## 0.2.1 - 2026-06-13
 
 - Standardize recommendation output as overview table first, then Top 5 detailed analysis.

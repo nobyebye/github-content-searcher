@@ -132,6 +132,13 @@ def recommendation_reason(repo, requirement):
 def readme_analysis(repo, requirement):
     description = repo.get("description") or "仓库描述为空，需要打开 README 判断项目定位。"
     domain_summary = infer_domain_summary(repo, requirement)
+    excerpt = repo.get("readme_excerpt")
+
+    if excerpt:
+        return (
+            f"README 摘要显示：{excerpt} "
+            f"阅读时应继续确认它是否围绕“{requirement}”提供安装、示例和核心能力说明。"
+        )
 
     return (
         f"README 应优先确认它是否真的围绕“{requirement}”提供安装、示例和核心能力说明。"

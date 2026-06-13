@@ -24,6 +24,11 @@ python -m github_content_searcher recommend "$ARGUMENTS" --requirement "$ARGUMEN
 
 4. Use `GITHUB_TOKEN` when available. If GitHub returns 403 or rate-limit errors, explain that the user should configure `GITHUB_TOKEN`.
 5. If a local OpenAI-compatible LLM is configured, it may improve explanations. If not, continue with rule-based scoring.
+6. If the user wants a reusable directory, run:
+
+```bash
+github-content-searcher catalog --limit 5 --output-json data/catalog.json --output-md data/catalog.md --output-html docs/index.html
+```
 
 ## Output Rules
 

@@ -1,0 +1,40 @@
+name: Update catalog
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "17 2 * * *"
+
+jobs:
+  catalog:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install package
+        run: python -m pip install -e .
+
+      - name: Build catalog
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: >
+          github-content-searcher catalog
+          --limit 5
+          --output-json data/catalog.json
+          --output-md data/catalog.md
+          --output-html docs/index.html
+
+      - name: Upload catalog artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: github-content-searcher-catalog
+          path: |
+            data/catalog.json
+            data/catalog.md
+            docs/index.html

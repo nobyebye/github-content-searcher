@@ -42,6 +42,7 @@ python -m pytest
 python -m github_content_searcher doctor
 python -m github_content_searcher --version
 python -m github_content_searcher rank examples\candidates.json --requirement "learning AI Agent"
+python -m github_content_searcher catalog --limit 1 --output-json data\catalog.json --output-md data\catalog.md --output-html docs\index.html
 ```
 
 Validate the bundled Skill:
@@ -59,6 +60,6 @@ claude plugin validate .\claude-code\github-content-searcher
 Tag the release after the checklist passes:
 
 ```powershell
-git tag -a v0.2.1 -m "Release v0.2.1"
-git push origin v0.2.1
+git tag -a v0.3.0 -m "Release v0.3.0"
+git push origin v0.3.0
 ```

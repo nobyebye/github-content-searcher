@@ -1,0 +1,49 @@
+{
+  "generated_at": "2026-06-13T00:00:00Z",
+  "topics": [
+    {
+      "name": "crawler",
+      "title": "爬虫",
+      "query": "python crawler web scraping",
+      "total_count": 2,
+      "projects": [
+        {
+          "full_name": "demo/crawler",
+          "html_url": "https://github.com/demo/crawler",
+          "description": "A sample Python crawler framework entry for catalog demos.",
+          "language": "Python",
+          "stars": 1000,
+          "forks": 120,
+          "open_issues": 5,
+          "updated_at": "2026-05-01T00:00:00Z",
+          "license": "MIT License",
+          "score": 60,
+          "readme_excerpt": "Demo is a Python crawler framework with quick-start examples.",
+          "recommendation_reason": "Python 项目，匹配网页抓取和爬虫，评分 60，Stars 1000",
+          "readme_analysis": "README 摘要显示：Demo is a Python crawler framework with quick-start examples.",
+          "suitable_for": "适合想用 Python 学习、对比或二次开发网页抓取和爬虫项目的人。",
+          "getting_started": "先看 README 的安装命令和 Quick Start，再找 examples、docs 或 demo。",
+          "risk_summary": "许可证：MIT License；开放 issue：5；最近推送：2026-05-01。"
+        },
+        {
+          "full_name": "demo/browser-agent",
+          "html_url": "https://github.com/demo/browser-agent",
+          "description": "A sample browser automation agent entry for catalog demos.",
+          "language": "Python",
+          "stars": 600,
+          "forks": 80,
+          "open_issues": 12,
+          "updated_at": "2026-04-01T00:00:00Z",
+          "license": "Apache License 2.0",
+          "score": 42,
+          "readme_excerpt": "Demo browser agent shows how to automate browser workflows.",
+          "recommendation_reason": "Python 项目，匹配浏览器自动化，评分 42，Stars 600",
+          "readme_analysis": "README 摘要显示：Demo browser agent shows how to automate browser workflows.",
+          "suitable_for": "适合想用 Python 学习浏览器自动化和 Agent 工作流的人。",
+          "getting_started": "先看 README 的安装命令和 Quick Start，再找 examples、docs 或 demo。",
+          "risk_summary": "许可证：Apache License 2.0；开放 issue：12；最近推送：2026-04-01。"
+        }
+      ]
+    }
+  ]
+}

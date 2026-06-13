@@ -5,7 +5,9 @@ import sys
 
 from github_content_searcher import __version__
 from github_content_searcher.api import GitHubAPIError, search_github
+from github_content_searcher.catalog import build_catalog, write_catalog_outputs
 from github_content_searcher.llm import load_candidates, rank_with_optional_llm
+from github_content_searcher.readme import attach_readmes
 from github_content_searcher.reports import render_candidates_json
 
 
@@ -61,6 +63,17 @@ def build_parser():
     recommend_parser.add_argument("--top", type=positive_int, default=5, help="Number of recommendations")
     recommend_parser.add_argument("--output", help="Write Markdown recommendations to this path")
 
+    catalog_parser = subparsers.add_parser(
+        "catalog",
+        help="Build a reusable catalog of AI engineering GitHub projects.",
+    )
+    catalog_parser.add_argument("--limit", type=positive_int, default=5, help="Projects per catalog topic")
+    catalog_parser.add_argument("--min-stars", type=positive_int, help="Minimum star count")
+    catalog_parser.add_argument("--pushed-after", help="Minimum pushed date, for example: 2025-01-01")
+    catalog_parser.add_argument("--output-json", default="data/catalog.json", help="Catalog JSON output path")
+    catalog_parser.add_argument("--output-md", default="data/catalog.md", help="Catalog Markdown output path")
+    catalog_parser.add_argument("--output-html", default="docs/index.html", help="Catalog HTML output path")
+
     subparsers.add_parser("doctor", help="Check local configuration.")
 
     return parser
@@ -110,7 +123,8 @@ def run_recommend(args):
         pushed_after=args.pushed_after,
         limit=args.limit,
     )
-    markdown = rank_with_optional_llm(result["candidates"], args.requirement, args.top)
+    candidates = attach_readmes(result["candidates"], top=args.top)
+    markdown = rank_with_optional_llm(candidates, args.requirement, args.top)
 
     if args.output:
         with open(args.output, "w", encoding="utf-8") as file:
@@ -120,6 +134,26 @@ def run_recommend(args):
         print(f"Wrote recommendations to {args.output}")
     else:
         print(markdown)
+
+    return 0
+
+
+def run_catalog(args):
+    catalog = build_catalog(
+        limit=args.limit,
+        min_stars=args.min_stars,
+        pushed_after=args.pushed_after,
+    )
+    write_catalog_outputs(
+        catalog,
+        json_path=args.output_json,
+        markdown_path=args.output_md,
+        html_path=args.output_html,
+    )
+
+    print(f"Wrote catalog JSON to {args.output_json}")
+    print(f"Wrote catalog Markdown to {args.output_md}")
+    print(f"Wrote catalog HTML to {args.output_html}")
 
     return 0
 
@@ -150,6 +184,8 @@ def main(argv=None):
             return run_rank(args)
         if args.command == "recommend":
             return run_recommend(args)
+        if args.command == "catalog":
+            return run_catalog(args)
         if args.command == "doctor":
             return run_doctor()
     except GitHubAPIError as error:
