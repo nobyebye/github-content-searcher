@@ -41,6 +41,12 @@ github-content-searcher doctor
 github-content-searcher --version
 ```
 
+Search and rank in one command:
+
+```powershell
+github-content-searcher recommend "python ai agent" --requirement "I want Python projects for learning AI Agents" --language Python --min-stars 100 --limit 5
+```
+
 Search for candidates:
 
 ```powershell
@@ -81,6 +87,16 @@ python -m github_content_searcher rank examples\candidates.json --requirement "l
 - 风险 / Risk: license=MIT License, open_issues=5.
 - 下一步：打开仓库文档，确认安装方式、维护活跃度和最小可运行示例。
 ```
+
+## Recommended Workflow
+
+Use `recommend` when you want a quick decision:
+
+```powershell
+github-content-searcher recommend "browser automation agent" --requirement "I need an active Python project for browser automation agents" --language Python --min-stars 100
+```
+
+Use `search` and `rank` separately when you want to save candidate JSON and inspect it later.
 
 ## Local LLM Support
 

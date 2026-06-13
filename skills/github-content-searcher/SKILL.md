@@ -14,6 +14,7 @@ Prefer the packaged CLI when it is installed:
 ```powershell
 github-content-searcher search "python ai agent" --language Python --min-stars 100 --limit 5 --output candidates.json
 github-content-searcher rank candidates.json --requirement "I want Python projects for learning AI Agents" --top 5
+github-content-searcher recommend "python ai agent" --requirement "I want Python projects for learning AI Agents" --language Python --min-stars 100 --limit 5
 github-content-searcher doctor
 ```
 
@@ -38,7 +39,8 @@ python -m github_content_searcher search "rag framework" --language Python --lim
    - Include qualifiers such as `language:`, `stars:>`, `pushed:>`, and topic words when useful.
 
 3. Search candidates.
-   - Use `github-content-searcher search` for deterministic GitHub API search.
+   - Use `github-content-searcher recommend` for the fastest search-plus-rank workflow.
+   - Use `github-content-searcher search` when candidate JSON should be saved or inspected.
    - Use `GITHUB_TOKEN` when available to reduce rate-limit failures.
    - If GitHub returns 403 or rate-limit errors, explain the issue and ask the user to configure `GITHUB_TOKEN`.
 

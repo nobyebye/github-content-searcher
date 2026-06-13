@@ -41,6 +41,7 @@ Run these before publishing:
 python -m pytest
 python -m github_content_searcher doctor
 python -m github_content_searcher --version
+python -m github_content_searcher rank examples\candidates.json --requirement "learning AI Agent"
 ```
 
 Validate the bundled Skill:

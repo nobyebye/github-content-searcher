@@ -48,6 +48,19 @@ def build_parser():
     rank_parser.add_argument("--top", type=positive_int, default=5, help="Number of recommendations")
     rank_parser.add_argument("--output", help="Write Markdown recommendations to this path")
 
+    recommend_parser = subparsers.add_parser(
+        "recommend",
+        help="Search GitHub and rank recommendations in one command.",
+    )
+    recommend_parser.add_argument("query", help="Search query, for example: python ai agent")
+    recommend_parser.add_argument("--requirement", required=True, help="User engineering requirement")
+    recommend_parser.add_argument("--language", help="Preferred programming language")
+    recommend_parser.add_argument("--min-stars", type=positive_int, help="Minimum star count")
+    recommend_parser.add_argument("--pushed-after", help="Minimum pushed date, for example: 2025-01-01")
+    recommend_parser.add_argument("--limit", type=positive_int, default=5, help="Number of candidates")
+    recommend_parser.add_argument("--top", type=positive_int, default=5, help="Number of recommendations")
+    recommend_parser.add_argument("--output", help="Write Markdown recommendations to this path")
+
     subparsers.add_parser("doctor", help="Check local configuration.")
 
     return parser
@@ -89,6 +102,28 @@ def run_rank(args):
     return 0
 
 
+def run_recommend(args):
+    result = search_github(
+        query=args.query,
+        language=args.language,
+        min_stars=args.min_stars,
+        pushed_after=args.pushed_after,
+        limit=args.limit,
+    )
+    markdown = rank_with_optional_llm(result["candidates"], args.requirement, args.top)
+
+    if args.output:
+        with open(args.output, "w", encoding="utf-8") as file:
+            file.write(markdown)
+            if not markdown.endswith("\n"):
+                file.write("\n")
+        print(f"Wrote recommendations to {args.output}")
+    else:
+        print(markdown)
+
+    return 0
+
+
 def run_doctor():
     checks = [
         ("Version", __version__),
@@ -113,6 +148,8 @@ def main(argv=None):
             return run_search(args)
         if args.command == "rank":
             return run_rank(args)
+        if args.command == "recommend":
+            return run_recommend(args)
         if args.command == "doctor":
             return run_doctor()
     except GitHubAPIError as error:

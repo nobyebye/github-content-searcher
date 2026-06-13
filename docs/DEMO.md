@@ -2,13 +2,19 @@
 
 ## Search
 
+Use the one-command workflow when you want a recommendation immediately:
+
+```powershell
+github-content-searcher recommend "python ai agent" --requirement "I want Python projects for learning AI Agents" --language Python --min-stars 100 --limit 3
+```
+
+## Search Then Rank
+
 ```powershell
 github-content-searcher search "python ai agent" --language Python --min-stars 100 --limit 3 --output candidates.json
 ```
 
 This writes GitHub repository candidates to `candidates.json`.
-
-## Rank
 
 ```powershell
 github-content-searcher rank candidates.json --requirement "I want Python projects for learning AI Agents" --top 3 --output recommendations.md
